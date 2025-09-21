@@ -8,6 +8,7 @@
 #include <arpa/inet.h>
 #include <fcntl.h>
 #include <time.h>
+#include <sys/select.h>
 
 #define SERVER_PORT 12345
 #define UNIX_PATH "/tmp/demo_socket"
@@ -22,6 +23,7 @@ double now_ms() {
 int main(int argc, char *argv[]) {
     int use_unix = 0;
     int blocking = 1;
+    int async_mode = 0;
     int sockfd, connfd;
     struct sockaddr_un addr_un;
     struct sockaddr_in addr_in;
@@ -30,8 +32,10 @@ int main(int argc, char *argv[]) {
     for (int i = 1; i < argc; i++) {
         if (!strcmp(argv[i], "--unix")) use_unix = 1;
         if (!strcmp(argv[i], "--nonblocking")) blocking = 0;
+        if (!strcmp(argv[i], "--async")) async_mode = 1;
     }
 
+    // ---- створення сокету ----
     double t_start = now_ms();
     if (use_unix) {
         sockfd = socket(AF_UNIX, SOCK_STREAM, 0);
@@ -39,7 +43,6 @@ int main(int argc, char *argv[]) {
         addr_un.sun_family = AF_UNIX;
         strcpy(addr_un.sun_path, UNIX_PATH);
         unlink(UNIX_PATH);
-
         bind(sockfd, (struct sockaddr*)&addr_un, sizeof(addr_un));
     } else {
         sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -47,15 +50,33 @@ int main(int argc, char *argv[]) {
         addr_in.sin_family = AF_INET;
         addr_in.sin_addr.s_addr = htonl(INADDR_ANY);
         addr_in.sin_port = htons(SERVER_PORT);
-
         bind(sockfd, (struct sockaddr*)&addr_in, sizeof(addr_in));
     }
     double t_socket = now_ms() - t_start;
 
     listen(sockfd, 5);
 
+    // ---- асинхронний / блокуючий accept ----
     t_start = now_ms();
-    connfd = accept(sockfd, NULL, NULL);
+    if (async_mode) {
+        // non-blocking для select()
+        int flags = fcntl(sockfd, F_GETFL, 0);
+        fcntl(sockfd, F_SETFL, flags | O_NONBLOCK);
+
+        fd_set read_fds;
+        struct timeval tv = {1,0};
+        while (1) {
+            FD_ZERO(&read_fds);
+            FD_SET(sockfd, &read_fds);
+            int ready = select(sockfd+1, &read_fds, NULL, NULL, &tv);
+            if (ready > 0 && FD_ISSET(sockfd, &read_fds)) {
+                connfd = accept(sockfd, NULL, NULL);
+                break;
+            }
+        }
+    } else {
+        connfd = accept(sockfd, NULL, NULL);
+    }
     double t_accept = now_ms() - t_start;
 
     if (!blocking) {
@@ -68,12 +89,33 @@ int main(int argc, char *argv[]) {
     size_t packets = 0;
 
     double t0 = now_ms();
-    while (1) {
-        ssize_t n = recv(connfd, buffer, sizeof(buffer), 0);
-        if (n > 0) {
-            total_bytes += n;
-            packets++;
-            if (n == 3 && !memcmp(buffer, "END", 3)) break;
+    if (async_mode) {
+        // async recv через select()
+        fd_set read_fds;
+        struct timeval tv = {0, 1000}; // 1 ms
+        int done = 0;
+        while (!done) {
+            FD_ZERO(&read_fds);
+            FD_SET(connfd, &read_fds);
+            int ready = select(connfd+1, &read_fds, NULL, NULL, &tv);
+            if (ready > 0 && FD_ISSET(connfd, &read_fds)) {
+                ssize_t n = recv(connfd, buffer, sizeof(buffer), 0);
+                if (n > 0) {
+                    total_bytes += n;
+                    packets++;
+                    if (n == 3 && !memcmp(buffer, "END", 3)) done = 1;
+                }
+            }
+        }
+    } else {
+        // звичайний blocking / non-blocking recv
+        while (1) {
+            ssize_t n = recv(connfd, buffer, sizeof(buffer), 0);
+            if (n > 0) {
+                total_bytes += n;
+                packets++;
+                if (n == 3 && !memcmp(buffer, "END", 3)) break;
+            }
         }
     }
     double t_elapsed = now_ms() - t0;

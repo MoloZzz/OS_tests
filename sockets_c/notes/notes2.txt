@@ -1,0 +1,293 @@
+1.
+$ ./server.exe --inet --blocking
+Server results:
+Socket creation: 6.361 ms
+Accept time: 3695.316 ms
+Packets: 96372
+Bytes: 102400003
+Duration: 1091.021 ms
+Throughput: 93.86 MB/s, 88331.96 packets/s
+$ ./client.exe --inet --small
+Client results:
+Connect time: 1.869 ms
+Packets sent: 100000
+Bytes sent: 102400000
+Duration: 1091.116 ms
+Send rate: 93.85 MB/s, 91649.26 packets/s
+2.
+$ ./server.exe --inet --blocking
+Server results:
+Socket creation: 1.669 ms
+Accept time: 8326.591 ms
+Packets: 503
+Bytes: 104857603
+Duration: 29.022 ms
+Throughput: 3613.06 MB/s, 17331.80 packets/s
+$ ./client.exe --inet --large
+Client results:
+Connect time: 2.273 ms
+Packets sent: 100
+Bytes sent: 104857600
+Duration: 29.107 ms
+Send rate: 3602.44 MB/s, 3435.55 packets/s
+
+3.
+$ ./server.exe --inet --blocking
+Server results:
+Socket creation: 1.738 ms
+Accept time: 10302.237 ms
+Packets: 96822
+Bytes: 102400003
+Duration: 1098.395 ms
+Throughput: 93.23 MB/s, 88148.63 packets/s
+$ ./client.exe --inet --nonblocking --small
+Client results:
+Connect time: 2.217 ms
+Packets sent: 100000
+Bytes sent: 102400000
+Duration: 1098.634 ms
+Send rate: 93.21 MB/s, 91022.15 packets/s
+4.
+$ ./server.exe --inet --blocking
+Server results:
+Socket creation: 1.765 ms
+Accept time: 4289.034 ms
+Packets: 502
+Bytes: 104857603
+Duration: 25.262 ms
+Throughput: 4150.87 MB/s, 19872.06 packets/s
+$ ./client.exe --inet --nonblocking --large
+Client results:
+Connect time: 2.160 ms
+Packets sent: 100
+Bytes sent: 104857600
+Duration: 25.365 ms
+Send rate: 4133.93 MB/s, 3942.42 packets/s
+
+5.
+$ ./server.exe --inet --blocking
+Server results:
+Socket creation: 1.580 ms
+Accept time: 9796.324 ms
+Packets: 99699
+Bytes: 102400003
+Duration: 3479.747 ms
+Throughput: 29.43 MB/s, 28651.22 packets/s
+$ ./client.exe --inet --async --small
+Client results:
+Connect time: 2.104 ms
+Packets sent: 100000
+Bytes sent: 102400000
+Duration: 3479.819 ms
+Send rate: 29.43 MB/s, 28737.13 packets/s
+6.
+$ ./server.exe --inet --blocking
+Server results:
+Socket creation: 1.857 ms
+Accept time: 3341.630 ms
+Packets: 502
+Bytes: 104857603
+Duration: 29.488 ms
+Throughput: 3556.00 MB/s, 17024.16 packets/s
+$ ./client.exe --inet --async --large
+Client results:
+Connect time: 1.875 ms
+Packets sent: 100
+Bytes sent: 104857600
+Duration: 29.537 ms
+Send rate: 3550.05 MB/s, 3385.60 packets/s
+
+7.
+$ ./server.exe --inet --nonblocking
+Server results:
+Socket creation: 1.795 ms
+Accept time: 7076.586 ms
+Packets: 99970
+Bytes: 102400003
+Duration: 971.688 ms
+Throughput: 105.38 MB/s, 102882.79 packets/s
+$ ./client.exe --inet --small
+Client results:
+Connect time: 2.209 ms
+Packets sent: 100000
+Bytes sent: 102400000
+Duration: 971.744 ms
+Send rate: 105.38 MB/s, 102907.72 packets/s
+8.
+$ ./server.exe --inet --nonblocking
+Server results:
+Socket creation: 1.639 ms
+Accept time: 32919.576 ms
+Packets: 503
+Bytes: 104857603
+Duration: 23.450 ms
+Throughput: 4471.63 MB/s, 21450.35 packets/s
+$ ./client.exe --inet --large
+Client results:
+Connect time: 1.985 ms
+Packets sent: 100
+Bytes sent: 104857600
+Duration: 23.529 ms
+Send rate: 4456.62 MB/s, 4250.16 packets/s
+
+9.
+$ ./server.exe --inet --nonblocking
+Server results:
+Socket creation: 1.609 ms
+Accept time: 3846.445 ms
+Packets: 99818
+Bytes: 102400003
+Duration: 887.794 ms
+Throughput: 115.34 MB/s, 112433.79 packets/s
+$ ./client.exe --inet --nonblocking --small
+Client results:
+Connect time: 2.035 ms
+Packets sent: 100000
+Bytes sent: 102400000
+Duration: 887.846 ms
+Send rate: 115.34 MB/s, 112632.13 packets/s
+10.
+$ ./server.exe --inet --nonblocking
+Server results:
+Socket creation: 1.622 ms
+Accept time: 10684.228 ms
+Packets: 503
+Bytes: 104857603
+Duration: 31.399 ms
+Throughput: 3339.47 MB/s, 16019.36 packets/s
+$ ./client.exe --inet --nonblocking --large
+Client results:
+Connect time: 1.987 ms
+Packets sent: 100
+Bytes sent: 104857600
+Duration: 31.510 ms
+Send rate: 3327.79 MB/s, 3173.63 packets/s
+
+11.
+$ ./server.exe --inet --nonblocking
+Server results:
+Socket creation: 1.986 ms
+Accept time: 16751.304 ms
+Packets: 99999
+Bytes: 102400003
+Duration: 3292.987 ms
+Throughput: 31.10 MB/s, 30367.26 packets/s
+$ ./client.exe --inet --async --small
+Client results:
+Connect time: 1.841 ms
+Packets sent: 100000
+Bytes sent: 102400000
+Duration: 3293.064 ms
+Send rate: 31.10 MB/s, 30366.86 packets/s
+12.
+$ ./server.exe --inet --nonblocking
+Server results:
+Socket creation: 1.723 ms
+Accept time: 3842.207 ms
+Packets: 503
+Bytes: 104857603
+Duration: 34.780 ms
+Throughput: 3014.91 MB/s, 14462.46 packets/s
+$ ./client.exe --inet --async --large
+Client results:
+Connect time: 2.227 ms
+Packets sent: 100
+Bytes sent: 104857600
+Duration: 34.905 ms
+Send rate: 3004.07 MB/s, 2864.90 packets/s
+
+13.
+$ ./server.exe --inet --async
+Server results:
+Socket creation: 1.737 ms
+Accept time: 10018.329 ms
+Packets: 24503
+Bytes: 102400003
+Duration: 915.159 ms
+Throughput: 111.89 MB/s, 26774.59 packets/s
+$ ./client.exe --inet --small
+Client results:
+Connect time: 1.872 ms
+Packets sent: 100000
+Bytes sent: 102400000
+Duration: 915.257 ms
+Send rate: 111.88 MB/s, 109258.94 packets/s
+14.
+$ ./server.exe --inet --async
+Server results:
+Socket creation: 1.699 ms
+Accept time: 4856.664 ms
+Packets: 485
+Bytes: 104857603
+Duration: 125.805 ms
+Throughput: 833.50 MB/s, 3855.18 packets/s
+$ ./client.exe --inet --large
+Client results:
+Connect time: 2.151 ms
+Packets sent: 100
+Bytes sent: 104857600
+Duration: 125.871 ms
+Send rate: 833.06 MB/s, 794.47 packets/s
+
+15.
+$ ./server.exe --inet --async
+Server results:
+Socket creation: 1.719 ms
+Accept time: 3739.432 ms
+Packets: 42543
+Bytes: 102400003
+Duration: 914.200 ms
+Throughput: 112.01 MB/s, 46535.76 packets/s
+$ ./client.exe --inet --nonblocking --small
+Client results:
+Connect time: 1.979 ms
+Packets sent: 100000
+Bytes sent: 102400000
+Duration: 914.306 ms
+Send rate: 112.00 MB/s, 109372.53 packets/s
+16.
+$ ./server.exe --inet --async
+*no service response*
+$ ./client.exe --inet --nonblocking --large
+Client results:
+Connect time: 2.009 ms
+Packets sent: 100
+Bytes sent: 104857600
+Duration: 0.332 ms
+Send rate: 316026.52 MB/s, 301386.38 packets/s
+17.
+$ ./server.exe --inet --async
+*no service response*
+$ ./client.exe --inet --async --small
+Client results:
+Connect time: 1.863 ms
+Packets sent: 100000
+Bytes sent: 102400000
+Duration: 3686.942 ms
+Send rate: 27.77 MB/s, 27122.74 packets/s
+
+18.
+$ ./server.exe --inet --async
+*no service response*
+$ ./client.exe --inet --async --large
+Client results:
+Connect time: 1.993 ms
+Packets sent: 100
+Bytes sent: 104857600
+Duration: 4604.033 ms
+Send rate: 22.78 MB/s, 21.72 packets/s
+v2
+$ ./client.exe --inet --async --large
+Client results:--inet --async --large
+Connect time: 2.034 ms
+Packets sent: 100
+Bytes sent: 104857600
+Duration: 2465.198 ms
+Send rate: 42.54 MB/s, 40.56 packets/s
+$ ./client.exe --inet --async --large
+Client results:
+Connect time: 1.897 ms
+Packets sent: 100
+Bytes sent: 104857600
+Duration: 36.864 ms
+Send rate: 2844.44 MB/s, 2712.67 packets/s
