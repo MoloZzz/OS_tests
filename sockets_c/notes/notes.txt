@@ -1,0 +1,212 @@
+INET (windows)
+1. 
+$ ./server.exe --inet --blocking
+Server results:
+ Socket creation: 1.635 ms
+ Accept time: 13008.412 ms
+ Packets: 94669
+ Bytes: 102400003
+ Duration: 986.858 ms
+ Throughput: 103.76 MB/s, 95929.76 packets/s
+
+$ ./client.exe --inet --small
+Client results:
+ Connect time: 1.861 ms
+ Packets sent: 100000
+ Bytes sent: 102400000
+ Duration: 986.983 ms
+ Send rate: 103.75 MB/s, 101318.84 packets/s
+2. 
+$ ./server.exe --inet --blocking
+Server results:
+ Socket creation: 1.642 ms
+ Accept time: 7118.203 ms
+ Packets: 503
+ Bytes: 104857603
+ Duration: 30.184 ms
+ Throughput: 3473.92 MB/s, 16664.35 packets/s
+
+$ ./client.exe --inet --large
+Client results:
+ Connect time: 1.924 ms
+ Packets sent: 100
+ Bytes sent: 104857600
+ Duration: 30.265 ms
+ Send rate: 3464.65 MB/s, 3304.15 packets/s
+
+3. 
+$ ./server.exe --inet --nonblocking
+Server results:
+ Socket creation: 1.756 ms
+ Accept time: 10988.183 ms
+ Packets: 99798
+ Bytes: 102400003
+ Duration: 866.691 ms
+ Throughput: 118.15 MB/s, 115148.33 packets/s
+
+$ ./client.exe --inet --small
+Client results:
+ Connect time: 2.434 ms
+ Packets sent: 100000
+ Bytes sent: 102400000
+ Duration: 866.784 ms
+ Send rate: 118.14 MB/s, 115368.93 packets/s
+
+4.
+$ ./server.exe --inet --nonblocking
+Server results:
+ Socket creation: 1.813 ms
+ Accept time: 5356.807 ms
+ Packets: 503
+ Bytes: 104857603
+ Duration: 23.271 ms
+ Throughput: 4505.84 MB/s, 21614.42 packets/s
+ 
+$ ./client.exe --inet --large
+Client results:
+ Connect time: 2.101 ms
+ Packets sent: 100
+ Bytes sent: 104857600
+ Duration: 23.339 ms
+ Send rate: 4492.88 MB/s, 4284.75 packets/s
+
+5. 
+$ ./client.exe --inet --small
+Client results:
+ Connect time: 1.791 ms
+ Packets sent: 100000
+ Bytes sent: 102400000
+ Duration: 1005.578 ms
+ Send rate: 101.83 MB/s, 99445.30 packets/s
+
+
+$ ./server.exe --inet --async
+Server results:
+ Socket creation: 1.771 ms
+ Accept time: 8277.478 ms
+ Packets: 95217
+ Bytes: 102400003
+ Duration: 1005.511 ms
+ Throughput: 101.84 MB/s, 94695.15 packets/s
+
+6.
+$ ./server.exe --inet --async
+Server results:
+ Socket creation: 1.849 ms
+ Accept time: 5942.671 ms
+ Packets: 503
+ Bytes: 104857603
+ Duration: 23.293 ms
+ Throughput: 4501.60 MB/s, 21594.10 packets/s
+
+$ ./client.exe --inet --large
+Client results:
+ Connect time: 2.431 ms
+ Packets sent: 100
+ Bytes sent: 104857600
+ Duration: 23.349 ms
+ Send rate: 4490.80 MB/s, 4282.77 packets/s
+
+
+– UNIX
+1. 
+root@0b9f1f0d3f35:~/sockets_c# ./server --unix --blocking
+Server results:
+ Socket creation: 0.101 ms
+ Accept time: 3101.873 ms
+ Packets: 40908
+ Bytes: 102400003
+ Duration: 63.780 ms
+ Throughput: 1605.51 MB/s, 641389.82 packets/s
+
+
+root@0b9f1f0d3f35:~/sockets_c# ./client --unix --small
+Client results:
+ Connect time: 0.073 ms
+ Packets sent: 100000
+ Bytes sent: 102400000
+ Duration: 63.779 ms
+ Send rate: 1605.55 MB/s, 1567920.30 packets/s
+
+
+2. 
+root@0b9f1f0d3f35:~/sockets_c# ./client --unix --large
+Client results:
+ Connect time: 0.102 ms
+ Packets sent: 100
+ Bytes sent: 104857600
+ Duration: 25.247 ms
+ Send rate: 4153.32 MB/s, 3960.91 packets/s
+
+
+3.
+root@0b9f1f0d3f35:~/sockets_c# ./server --unix --nonblocking
+Server results:
+ Socket creation: 0.104 ms
+ Accept time: 9600.634 ms
+ Packets: 65201
+ Bytes: 102400003
+ Duration: 48.392 ms
+ Throughput: 2116.07 MB/s, 1347362.13 packets/s
+
+root@0b9f1f0d3f35:~/sockets_c# ./client --unix --small
+Client results:
+ Connect time: 0.080 ms
+ Packets sent: 100000
+ Bytes sent: 102400000
+ Duration: 48.371 ms
+ Send rate: 2116.96 MB/s, 2067343.04 packets/s
+4. 
+root@0b9f1f0d3f35:~/sockets_c# ./server --unix --nonblocking
+Server results:
+ Socket creation: 0.088 ms
+ Accept time: 6115.592 ms
+ Packets: 2682
+ Bytes: 104857603
+ Duration: 14.567 ms
+ Throughput: 7198.12 MB/s, 184110.23 packets/s
+
+root@0b9f1f0d3f35:~/sockets_c# ./client --unix --large
+Client results:
+ Connect time: 0.077 ms
+ Packets sent: 100
+ Bytes sent: 104857600
+ Duration: 14.554 ms
+ Send rate: 7204.92 MB/s, 6871.15 packets/s
+
+
+5.
+root@0b9f1f0d3f35:~/sockets_c# ./server --unix --async
+Server results:
+ Socket creation: 0.103 ms
+ Accept time: 2750.367 ms
+ Packets: 12521
+ Bytes: 102400003
+ Duration: 87.291 ms
+ Throughput: 1173.09 MB/s, 143440.27 packets/s
+
+root@0b9f1f0d3f35:~/sockets_c# ./client --unix --small
+Client results:
+ Connect time: 0.063 ms
+ Packets sent: 100000
+ Bytes sent: 102400000
+ Duration: 51.760 ms
+ Send rate: 1978.37 MB/s, 1932003.45 packets/s
+
+6. 
+root@0b9f1f0d3f35:~/sockets_c# ./server --unix --async
+Server results:
+ Socket creation: 0.096 ms
+ Accept time: 4420.740 ms
+ Packets: 932
+ Bytes: 104857603
+ Duration: 25.187 ms
+ Throughput: 4163.14 MB/s, 37003.04 packets/s
+
+root@0b9f1f0d3f35:~/sockets_c# ./client --unix --large
+Client results:
+ Connect time: 0.059 ms
+ Packets sent: 100
+ Bytes sent: 104857600
+ Duration: 21.907 ms
+ Send rate: 4786.48 MB/s, 4564.74 packets/s

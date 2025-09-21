@@ -1,0 +1,19 @@
+# Базовий образ Ubuntu
+FROM ubuntu:22.04
+
+# Оновлюємо пакети та ставимо build-essential для gcc, make та ін.
+RUN apt update && apt install -y build-essential
+
+# Створюємо робочу директорію
+WORKDIR /root/sockets_c
+
+# Копіюємо код у контейнер
+COPY server.c .
+COPY client.c .
+
+# Компіліюємо код при збірці (опційно)
+RUN gcc server.c -o server
+RUN gcc client.c -o client
+
+# Встановлюємо bash як команду за замовчуванням
+CMD ["/bin/bash"]
