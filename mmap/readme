@@ -1,0 +1,12 @@
+Порівняльний аналіз різних методів організації взаємодії (комунікації) процесів (Inter-Process Communications, IPC):
+mmap (required) (+ у різних режимах!)
+shared memory
+file open / read / write
+sockets / pipes / fifo / …
+queues
+other IPC ...
+параметри порівняння:
+latency
+throughput
+[channel] capacity
+...
